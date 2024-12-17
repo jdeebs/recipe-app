@@ -11,7 +11,7 @@ class RecipeModelTest(TestCase):
         # Set up test data object
         Recipe.objects.create(
             name='Pancakes',
-            cooking_time=10,
+            cooking_time_minutes=10,
             difficulty='easy',
             ingredients='flour, sugar, eggs'
         )
@@ -42,10 +42,10 @@ class RecipeModelTest(TestCase):
         recipe = Recipe.objects.get(id=1)
 
         # Get field metadata
-        cooking_time = recipe._meta.get_field('cooking_time')
+        cooking_time_minutes = recipe._meta.get_field('cooking_time')
 
         # Extract validators from cooking field
-        validators = cooking_time.validators
+        validators = cooking_time_minutes.validators
         # Check if MaxValueValidator is present and its value is 300
         max_value = next(
             (v.limit_value for v in validators if isinstance(v, MaxValueValidator)), None)
