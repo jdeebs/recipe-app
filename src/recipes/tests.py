@@ -1,3 +1,4 @@
+import json
 from django.test import TestCase
 from .models import Recipe
 # Import validators
@@ -8,12 +9,22 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class RecipeModelTest(TestCase):
     def setUpTestData():
+        ingredients_data = [
+                {"name": "flour", "quantity": 200, "unit": "g"},
+                {"name": "milk", "quantity": 300, "unit": "ml"},
+                {"name": "eggs", "quantity": 2, "unit": "pcs"}
+            ]
+        
+        # Encode ingredients as JSON
+        ingredients_json = json.dumps(ingredients_data)
+
         # Set up test data object
         Recipe.objects.create(
             name='Pancakes',
+            prep_time_minutes=10,
             cooking_time_minutes=10,
             difficulty='easy',
-            ingredients='flour, sugar, eggs'
+            ingredients=ingredients_json
         )
 
     def test_name(self):
@@ -87,9 +98,4 @@ class RecipeModelTest(TestCase):
         # Get ingredients
         ingredients = recipe.ingredients
 
-        # Check if the ingredients are comma-separated
-        self.assertTrue(
-            # Use all() for cases of empty string ingredients (they return false)
-            all(ingredient.strip() for ingredient in ingredients.split(",")),
-            "Ingredients are not properly comma-separated."
-        )
+        # TESTS FOR INGREDIENT FORMAT GO HERE
