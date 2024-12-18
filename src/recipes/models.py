@@ -18,15 +18,19 @@ difficulty_choices = (
 )
 
 # Validate ingredients as JSON
+
+
 def validate_ingredients(value):
     try:
         # Attempt to parse as JSON
         ingredients = json.loads(value)
         if not isinstance(ingredients, list):
-            raise ValidationError("Ingredients must be a list of dictionaries.")
+            raise ValidationError(
+                "Ingredients must be a list of dictionaries.")
         for ingredient in ingredients:
             if not all(key in ingredient for key in ["name", "quantity", "unit"]):
-                raise ValidationError("Each ingredient must include 'name', 'quantity', and 'unit'.")
+                raise ValidationError(
+                    "Each ingredient must include 'name', 'quantity', and 'unit'.")
     except (ValueError, TypeError):
         raise ValidationError("Ingredients must be valid JSON.")
 
@@ -42,7 +46,7 @@ class Recipe(models.Model):
     ],
         help_text="Enter prep time in minutes"
     )
-    
+
     cooking_time_minutes = models.IntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(300)
