@@ -66,5 +66,7 @@ class Recipe(models.Model):
         help_text="Enter ingredients as a JSON string, e.g., '[{\"name\": \"flour\", \"quantity\": 200, \"unit\": \"g\"}]'"
     )
 
+    pic = models.ImageField(upload_to='recipes', default='no_image.svg')
+
     def __str__(self):
         return str(self.name)

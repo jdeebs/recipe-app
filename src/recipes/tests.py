@@ -10,11 +10,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class RecipeModelTest(TestCase):
     def setUpTestData():
         ingredients_data = [
-                {"name": "flour", "quantity": 200, "unit": "g"},
-                {"name": "milk", "quantity": 300, "unit": "ml"},
-                {"name": "eggs", "quantity": 2, "unit": "pcs"}
-            ]
-        
+            {"name": "flour", "quantity": 200, "unit": "g"},
+            {"name": "milk", "quantity": 300, "unit": "ml"},
+            {"name": "eggs", "quantity": 2, "unit": "pcs"}
+        ]
+
         # Encode ingredients as JSON
         ingredients_json = json.dumps(ingredients_data)
 
@@ -106,7 +106,8 @@ class RecipeModelTest(TestCase):
             self.fail("Ingredients field does not contain valid JSON.")
 
         # Check that ingredients is a list
-        self.assertIsInstance(ingredients, list, "Ingredients should be a list.")
+        self.assertIsInstance(
+            ingredients, list, "Ingredients should be a list.")
 
         # Check each ingredient is a valid dictionary with required keys
         required_keys = {"name", "quantity", "unit"}
@@ -114,6 +115,8 @@ class RecipeModelTest(TestCase):
             # Check each item in the list is a dictionary
             # One item example:
             # {"name": "flour", "quantity": 200, "unit": "g"}
-            self.assertIsInstance(ingredient, dict, "Each ingredient should be a dictionary.")
+            self.assertIsInstance(
+                ingredient, dict, "Each ingredient should be a dictionary.")
             # Check each dictionary has the required keys
-            self.assertTrue(required_keys.issubset(ingredient.keys()), f"Each ingredient must include the keys: {required_keys}")
+            self.assertTrue(required_keys.issubset(
+                ingredient.keys()), f"Each ingredient must include the keys: {required_keys}")
