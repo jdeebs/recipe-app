@@ -53,7 +53,7 @@ class RecipeModelTest(TestCase):
         recipe = Recipe.objects.get(id=1)
 
         # Get field metadata
-        cooking_time_minutes = recipe._meta.get_field('cooking_time')
+        cooking_time_minutes = recipe._meta.get_field('cooking_time_minutes')
 
         # Extract validators from cooking field
         validators = cooking_time_minutes.validators
@@ -95,7 +95,25 @@ class RecipeModelTest(TestCase):
     def test_ingredients_format(self):
         recipe = Recipe.objects.get(id=1)
 
-        # Get ingredients
-        ingredients = recipe.ingredients
+        # Load ingredients, in JSON string
+        ingredients_json = recipe.ingredients
 
-        # TESTS FOR INGREDIENT FORMAT GO HERE
+        # Convert JSON into python data structure
+        # in this case, a list of dictionaries
+        try:
+            ingredients = json.loads(ingredients_json)
+        except json.JSONDecodeError:
+            self.fail("Ingredients field does not contain valid JSON.")
+
+        # Check that ingredients is a list
+        self.assertIsInstance(ingredients, list, "Ingredients should be a list.")
+
+        # Check each ingredient is a valid dictionary with required keys
+        required_keys = {"name", "quantity", "unit"}
+        for ingredient in ingredients:
+            # Check each item in the list is a dictionary
+            # One item example:
+            # {"name": "flour", "quantity": 200, "unit": "g"}
+            self.assertIsInstance(ingredient, dict, "Each ingredient should be a dictionary.")
+            # Check each dictionary has the required keys
+            self.assertTrue(required_keys.issubset(ingredient.keys()), f"Each ingredient must include the keys: {required_keys}")

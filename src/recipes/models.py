@@ -36,28 +36,33 @@ def validate_ingredients(value):
 
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=120)
+    name = models.CharField(max_length=120, default="Unnamed Recipe")
 
-    description = models.TextField(max_length=500)
+    description = models.TextField(
+        max_length=500, default="No description available.")
 
     prep_time_minutes = models.IntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(300)
     ],
-        help_text="Enter prep time in minutes"
+        help_text="Enter prep time in minutes",
+        default=10
     )
 
     cooking_time_minutes = models.IntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(300)
     ],
-        help_text="Enter cooking time in minutes"
+        help_text="Enter cooking time in minutes",
+        default=20
     )
 
     difficulty = models.CharField(
         max_length=12, choices=difficulty_choices, default='easy')
 
     ingredients = models.TextField(
+        default=json.dumps([{"name": "water", "quantity": 1, "unit": "cup"}]),
+        validators=[validate_ingredients],
         help_text="Enter ingredients as a JSON string, e.g., '[{\"name\": \"flour\", \"quantity\": 200, \"unit\": \"g\"}]'"
     )
 
