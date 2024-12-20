@@ -10,19 +10,22 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class RecipeModelTest(TestCase):
     def setUpTestData():
         ingredients_data = [
-            {"name": "flour", "quantity": 200, "unit": "g"},
-            {"name": "milk", "quantity": 300, "unit": "ml"},
-            {"name": "eggs", "quantity": 2, "unit": "pcs"}
-        ]
+            {"name": "flour", "quantity": 200, "unit": "g"}, 
+            {"name": "milk", "quantity": 300, "unit": "ml"}, 
+            {"name": "egg", "quantity": 2, "unit": "pcs"}, 
+            {"name": "baking powder", "quantity": 1, "unit": "tsp"}, 
+            {"name": "sugar", "quantity": 2, "unit": "tbsp"}
+            ]
 
         # Encode ingredients as JSON
         ingredients_json = json.dumps(ingredients_data)
 
         # Set up test data object
         Recipe.objects.create(
-            name='Pancakes',
+            name='Classic Pancakes',
+            description='Fluffy and light pancakes, perfect for breakfast.',
             prep_time_minutes=10,
-            cooking_time_minutes=10,
+            cooking_time_minutes=15,
             difficulty='easy',
             ingredients=ingredients_json
         )
@@ -48,6 +51,18 @@ class RecipeModelTest(TestCase):
 
         # Compare the recipes name to <= 120
         self.assertTrue(len(recipe.name) <= 120)
+
+    def test_description_max_length(self):
+        recipe = Recipe.objects.get(id=1)
+
+        # Get field metadata
+        max_length = recipe._meta.get_field('description').max_length
+
+        # Assert that the max length is 120
+        self.assertEqual(max_length, 500)
+
+        # Compare the recipes description to <= 120
+        self.assertTrue(len(recipe.description) <= 120)
 
     def test_cooking_time_validators(self):
         recipe = Recipe.objects.get(id=1)
