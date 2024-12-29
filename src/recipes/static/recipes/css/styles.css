@@ -1,9 +1,55 @@
-h1,
-p {
-  text-align: center;
+:root {
+  /* Base spacing scale */
+  --spacing-xxs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem;  /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;  /* 24px */
+  --spacing-xl: 2rem;    /* 32px */
+  --spacing-xxl: 3rem;   /* 48px */
+  --spacing-xxxl: 4rem;  /* 64px */
 }
 
-p {
-    max-width: 600px;
-    margin: 0 auto;
+body {
+  font-family: "Manrope", serif;
+}
+
+h1, p {
+  margin: 0;
+}
+
+.header, .subheader {
+  color: white;
+}
+
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  padding: var(--spacing-sm) 0 var(--spacing-sm) 0;
+}
+
+.landing-image {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.content {
+  margin-bottom: var(--spacing-sm);
+}
+
+.site-footer {
+  font-family: "Figtree", serif;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.view-recipes-btn {
+  text-decoration: none;
+  padding: 16px 24px;
+  border: 2px solid black;
 }

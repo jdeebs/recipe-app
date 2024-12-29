@@ -6,16 +6,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css">
     <link rel="stylesheet" href="{% static 'recipes/css/styles.css' %}">
     <title>Recipes</title>
 </head>
 
 <body>
-    <h1>Welcome to my Recipe app</h1>
-    <p>This app allows you to add and manage recipes, easily view recipe information, and more! We've only begun
-        pre-heating!</p>
-    <img src="{% static 'recipes/images/chopping_ingredients.jpg' %}" alt="Ingredients on cutting board" width="900"
-        height="600">
+    <div class="site-header">
+        <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
+        <p class="subheader">We've only begun pre-heating!</p>
+    </div>
+
+    <div class="content">
+        <img src="{% static 'recipes/images/chopping_ingredients.jpg' %}" alt="Ingredients on cutting board"
+            class="landing-image">
+    </div>
+
+    <div class="site-footer">
+        <a href="list/" class="view-recipes-btn">View Recipes</a>
+    </div>
 </body>
 
 </html>
