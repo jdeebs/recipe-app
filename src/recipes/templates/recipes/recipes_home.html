@@ -18,7 +18,7 @@
 
 <body>
     <div class="site-header">
-        <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
+        <a href="{% url 'recipes:home' %}"><h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1></a>
         <p class="subheader">We've only begun pre-heating!</p>
     </div>
 
@@ -28,7 +28,7 @@
     </div>
 
     <div class="site-footer">
-        <a href="recipes/" class="view-recipes-btn">View Recipes</a>
+        <a href="{% url 'recipes:recipe_list' %}" class="view-recipes-btn">View Recipes</a>
     </div>
 </body>
 
