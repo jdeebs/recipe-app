@@ -6,12 +6,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css">
     <link rel="stylesheet" href="{% static 'recipes/css/styles.css' %}">
     <title>Recipes</title>
 </head>
 
 <body>
-    <h1>Recipe List</h1>
+    <div class="site-header">
+        <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
+        <p class="subheader">We've only begun pre-heating!</p>
+    </div>
 
     {% comment %}
     Access records from model (object_list) one at a time using for loop
