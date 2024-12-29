@@ -26,18 +26,27 @@
     Access records from model (object_list) one at a time using for loop
     {% endcomment %}
 
-    <table>
-        <tr class="table-header">
-            <th>Recipe Titles</th>
-            <th>Recipe Images</th>
-        </tr>
-        {% for object in object_list %}
-        <tr>
-            <td><a href="{{object.get_absolute_url}}">{{object.name}}</a></td>
-            <td><img src="{{object.pic.url}}" width="150" height="200" /></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <section id="recipe-list">
+        <div class="table-wrapper">
+            <table>
+                {% for object in object_list %}
+                <tr class="table-item">
+                    <td>
+                        <a href="{{ object.get_absolute_url }}">
+                            {{ object.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ object.get_absolute_url }}">
+                            <img src="{{ object.pic.url }}" alt="{{ object.description }}" class="recipe-thumbnail" />
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
 
 </body>
 
