@@ -135,3 +135,9 @@ class RecipeModelTest(TestCase):
             # Check each dictionary has the required keys
             self.assertTrue(required_keys.issubset(
                 ingredient.keys()), f"Each ingredient must include the keys: {required_keys}")
+            
+    def test_get_absolute_url(self):
+        recipe = Recipe.objects.get(id=1)
+        # Check that get_absolute_url() takes user to detail page of recipe #1
+        # and load URL /recipes/1
+        self.assertEqual(recipe.get_absolute_url(), '/recipes/1')
