@@ -1,19 +1,65 @@
-<h2>{{object.name}}</h2>
+{% load static %}
 
-<img src="{{object.pic.url}}" width="200" height="300" />
-<br>
+<!DOCTYPE html>
+<html lang="en">
 
-<b>Description: </b> {{object.description}} <br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css">
+    <link rel="stylesheet" href="{% static 'recipes/css/styles.css' %}">
+    <title>Recipe Details</title>
+</head>
 
-<b>Prep time: </b> {{object.prep_time_minutes}} <br>
+<body>
+    <div class="site-header">
+        <a href="{% url 'recipes:home' %}">
+            <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
+        </a>
+        <p class="subheader">We've only begun pre-heating!</p>
+    </div>
 
-<b>Cook time: </b> {{object.cooking_time_minutes}} <br>
+    <section id="recipe-detail">
+        <div class="detail-item">
+            <h2>{{object.name}}</h2>
+        </div>
 
-<b>Difficulty: </b> {{object.difficulty}} <br>
+        <img src="{{object.pic.url}}" class="detail-image" />
+        <br>
 
-<b>Ingredients: </b>
-<ul>
-    {% for ingredient in recipe.parsed_ingredients %}
-        <li>{{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}</li>
-    {% endfor %}
-</ul>
+        <div class="detail-wrapper">
+            <div class="detail-item">
+                <b>Description: </b> {{object.description}}
+            </div>
+
+            <div class="detail-item">
+                <b>Prep time: </b> {{object.prep_time_minutes}} minutes
+            </div>
+
+            <div class="detail-item">
+                <b>Cook time: </b> {{object.cooking_time_minutes}} minutes
+            </div>
+
+            <div class="detail-item">
+                <b>Difficulty: </b> {{object.difficulty|capfirst }}
+            </div>
+
+            <div class="detail-item">
+                <b>Ingredients: </b>
+                <ul>
+                    {% for ingredient in recipe.parsed_ingredients %}
+                    <li>{{ ingredient.name|capfirst }}: {{ ingredient.quantity }} {{ ingredient.unit }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
