@@ -52,6 +52,12 @@ a {
   object-fit: cover;
 }
 
+@media only screen and (max-width: 769px) {
+  .landing-image, .detail-image {
+    height: 300px;
+  }
+}
+
 .content {
   margin-bottom: var(--spacing-sm);
 }
