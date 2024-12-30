@@ -75,3 +75,9 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return reverse ('recipes:detail', kwargs={'pk': self.pk})
+    
+    def parsed_ingredients(self):
+        try:
+            return json.loads(self.ingredients)
+        except json.JSONDecodeError:
+            return []
