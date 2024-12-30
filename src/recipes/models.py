@@ -4,6 +4,8 @@ from django.db import models
 # Import validators
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
+# Import needed for get_absolute_url() using primary key <pk>
+from django.shortcuts import reverse
 
 # Create your models here.
 difficulty_choices = (
@@ -70,3 +72,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+def get_absolute_url(self):
+    return reverse ('recipes:detail', kwargs={'pk': self.pk})
