@@ -44,7 +44,7 @@ a {
   padding: var(--spacing-sm) 0;
 }
 
-.landing-image {
+.landing-image, .detail-image {
   display: block;
   margin: 0 auto;
   width: 100%;
@@ -124,4 +124,33 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
   background-color: rgba(87, 117, 144, 0.5);
+}
+
+#recipe-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-md);
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+.detail-item b {
+  padding-bottom: var(--spacing-sm);
+}
+.detail-item ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.detail-item li {
+  padding-bottom: var(--spacing-sm);
 }
