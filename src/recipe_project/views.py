@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 # Django authentication libraries
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 # Django Form for authentication
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -41,3 +41,9 @@ def login_view(request):
     }
     # Load login page with context info
     return render(request, 'auth/login.html', context)
+
+def logout_view(request):
+    # Logout user using Django function
+    logout(request)
+    # Return to login form
+    return redirect('login')
