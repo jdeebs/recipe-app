@@ -46,4 +46,4 @@ def logout_view(request):
     # Logout user using Django function
     logout(request)
     # Return to login form
-    return redirect('login')
+    return render(request, 'auth/success.html')
