@@ -66,10 +66,14 @@ a {
   font-family: "Figtree", serif;
   display: flex;
   justify-content: center;
+  gap: var(--spacing-sm);
   text-transform: uppercase;
 }
 
-.view-recipes-btn {
+.view-recipes-btn, .login-btn {
+  width: 161px;
+  text-align: center;
+  gap: var(--spacing-sm);
   text-decoration: none;
   padding: 16px 24px;
   border: 2px solid black;
