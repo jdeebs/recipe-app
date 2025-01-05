@@ -79,6 +79,13 @@ a {
   border: 2px solid black;
 }
 
+.logout-btn {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  padding: 0 var(--spacing-sm) 0 var(--spacing-sm);
+}
+
 #recipe-list a {
   color: black;
   font-family: "Figtree", serif;
