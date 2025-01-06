@@ -20,7 +20,7 @@
     <header>
         <div class="container">
             <nav class="site-header">
-                <a href="{%url 'recipes:home' %}" class="back-btn btn"> Back <img
+                <a href="{%url 'recipes:list' %}" class="back-btn btn"> Back <img
                         src="{% static 'recipes/icons/back-arrow.svg' %}" width="25"></a>
                 <div class="logo-wrapper">
                     <a href="{% url 'recipes:home' %}">
@@ -33,7 +33,7 @@
             </nav>
         </div>
     </header>
-    
+
     <section id="recipe-detail">
         <div class="detail-item">
             <h2>{{object.name}}</h2>
