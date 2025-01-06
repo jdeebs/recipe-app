@@ -29,7 +29,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             # Send user to desired page
-            return redirect('recipes:recipe_list')
+            return redirect('recipes:list')
 
     else:
         error_message = 'Something went wrong'
