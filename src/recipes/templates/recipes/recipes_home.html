@@ -28,8 +28,11 @@
     </div>
 
     <div class="site-footer">
+        {% if user.is_authenticated %}
         <a href="{% url 'recipes:recipe_list' %}" class="view-recipes-btn">View Recipes</a>
-        <a href="{%url 'login' %}" class="login-btn"> Login </a>
+        {% else %}
+        <a href="{%url 'login' %}" class="login-btn">Login</a>
+        {% endif %}
     </div>
 </body>
 
