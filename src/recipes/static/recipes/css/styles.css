@@ -32,6 +32,9 @@ header {
   background-color: black;
 }
 
+/* Reset default button styles */
+button { all: unset; }
+
 .container {
   max-width: 1600px;
   margin: 0 auto;
@@ -119,13 +122,14 @@ header {
   transition: all 1s ease-out;
 }
 .relog-btn {
+  cursor: pointer;
   position: relative;
   font-size: 1em;
+  white-space: nowrap;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
   height: 30px;
   border-radius: 8px;
 }
@@ -265,7 +269,7 @@ tbody tr:nth-child(even) {
   padding-bottom: var(--spacing-sm);
 }
 
-.logout-success {
+.logout-success, .login {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -295,7 +299,27 @@ tbody tr:nth-child(even) {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.logout-text {
+.modal-text {
   display: flex;
   text-align: left;
+  padding: 0 var(--spacing-lg) var(--spacing-lg) 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.50);
+}
+
+#username, #password {
+  text-align: center;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 32px;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-md);
 }
