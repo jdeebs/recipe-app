@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # Recipe related apps
     'recipes',
     'users',
+    # To customize form styles
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
