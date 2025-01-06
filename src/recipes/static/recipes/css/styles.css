@@ -28,20 +28,40 @@ a {
   text-decoration: none;
 }
 
+header {
+  background-color: black;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+}
+
 .header,
 .subheader {
+  display: flex;
   color: white;
 }
 
 .site-header {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
+  gap: var(--spacing-sm);
   width: 100%;
   height: auto;
   min-height: 80px;
   background-color: black;
   padding: var(--spacing-sm) 0;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .landing-image, .detail-image {
@@ -80,10 +100,15 @@ a {
 }
 
 .logout-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
   color: white;
   background-color: black;
-  border: 2px solid black;
-  padding: 0 var(--spacing-sm) 0 var(--spacing-sm);
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: var(--spacing-xxs) var(--spacing-sm) var(--spacing-xxs) var(--spacing-sm);
 }
 
 #recipe-list a {
