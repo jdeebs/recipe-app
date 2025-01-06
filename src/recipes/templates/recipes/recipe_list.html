@@ -17,18 +17,24 @@
 </head>
 
 <body>
-    <div class="site-header">
-        <a href="{% url 'recipes:home' %}">
-            <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
-        </a>
-        <p class="subheader">We've only begun pre-heating!</p>
+    <header>
+        <div class="container">
+            <nav class="site-header">
+        <div class="logo-wrapper">
+            <a href="{% url 'recipes:home' %}">
+                <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
+            </a>
+            <p class="subheader">We've only begun pre-heating!</p>
+        </div>
+        <a href="{%url 'logout' %}" class="logout-btn"> Logout <img src="{% static 'recipes/icons/logout-box.svg' %}" width="25"></a>
+    </nav>
     </div>
+    </header>
 
     {% comment %}
     Access records from model (object_list) one at a time using for loop
     {% endcomment %}
 
-    <a href="{%url 'logout' %}" class="logout-btn"> Logout </a>
     <section id="recipe-list">
         <div class="table-wrapper">
             <table>
