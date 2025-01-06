@@ -20,15 +20,18 @@
     <header>
         <div class="container">
             <nav class="site-header">
-        <div class="logo-wrapper">
-            <a href="{% url 'recipes:home' %}">
-                <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
-            </a>
-            <p class="subheader">We've only begun pre-heating!</p>
+                <a href="{%url 'recipes:home' %}" class="back-btn btn"> Back <img
+                        src="{% static 'recipes/icons/back-arrow.svg' %}" width="25"></a>
+                <div class="logo-wrapper">
+                    <a href="{% url 'recipes:home' %}">
+                        <h1 class="header"><strong>JDEEBS'</strong> RECIPES</h1>
+                    </a>
+                    <p class="subheader">We've only begun pre-heating!</p>
+                </div>
+                <a href="{%url 'logout' %}" class="logout-btn btn"> Logout <img
+                        src="{% static 'recipes/icons/logout-box.svg' %}" width="25"></a>
+            </nav>
         </div>
-        <a href="{%url 'logout' %}" class="logout-btn"> Logout <img src="{% static 'recipes/icons/logout-box.svg' %}" width="25"></a>
-    </nav>
-    </div>
     </header>
 
     {% comment %}
