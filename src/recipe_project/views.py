@@ -24,13 +24,13 @@ def login_view(request):
             user = authenticate(username=username, password=password)
 
             # Check if user is authenticated
-            if user is not None:
-                login(request, user)
+        if user is not None:
+            login(request, user)
             # Send user to desired page
-                return redirect('recipes:list')
+            return redirect('recipes:list')
 
-            else:
-                error_message = 'Invalid username/password'
+        else:
+            error_message = 'Invalid username/password'
     else:
         form = AuthenticationForm()
 
