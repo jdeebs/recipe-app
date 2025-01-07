@@ -309,6 +309,7 @@ tbody tr:nth-child(even) {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: var(--spacing-sm);
 }
 ::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.50);
@@ -320,6 +321,12 @@ tbody tr:nth-child(even) {
   color: white;
   border: 1px solid white;
   border-radius: 32px;
-  margin-bottom: var(--spacing-sm);
   padding: var(--spacing-md);
+}
+.error-message {
+  color: red;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--spacing-sm);
+  font-size: .75em;
 }
