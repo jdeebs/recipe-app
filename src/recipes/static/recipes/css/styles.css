@@ -273,7 +273,7 @@ tbody tr:nth-child(even) {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url("https://img.freepik.com/free-photo/wooden-board-empty-table-top-blurred-background_1253-1584.jpg?t=st=1736188602~exp=1736192202~hmac=c403a627ce54f086513b9c75afe548473f9915328dbaa0a9d3e0ea284e2f7e3a&w=996") no-repeat center center fixed;
+  background: url("../images/logout-background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

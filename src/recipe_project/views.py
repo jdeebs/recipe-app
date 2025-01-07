@@ -8,8 +8,6 @@ from django.contrib.auth.forms import AuthenticationForm
 def login_view(request):
     # Init default error message
     error_message = None
-    # Object with username and password fields
-    form = AuthenticationForm()
 
     # When user hits 'login' button, POST request is generated
     if request.method == 'POST':
@@ -25,14 +23,16 @@ def login_view(request):
             # Validate user using Django auth
             user = authenticate(username=username, password=password)
 
-        # Check if user is authenticated
-        if user is not None:
-            login(request, user)
+            # Check if user is authenticated
+            if user is not None:
+                login(request, user)
             # Send user to desired page
-            return redirect('recipes:list')
+                return redirect('recipes:list')
 
+            else:
+                error_message = 'Invalid username/password'
     else:
-        error_message = 'Something went wrong'
+        form = AuthenticationForm()
 
     # Prepare data to send from view to template
     context = {
