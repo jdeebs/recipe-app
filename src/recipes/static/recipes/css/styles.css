@@ -190,6 +190,7 @@ button { all: unset; }
   margin: var(--spacing-lg);
 }
 .grid-item {
+  font-family: "Playfair Display", serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -200,8 +201,12 @@ button { all: unset; }
 }
 .recipe-name {
   color: black;
-  font-family: "Playfair Display", serif;
-  padding-bottom: var(--spacing-lg);
+}
+.recipe-total-time {
+  color: black;
+  font-style: italic;
+  opacity: 0.7;
+  padding-bottom: var(--spacing-lg)
 }
 .recipe-thumbnail {
   width: 400px;

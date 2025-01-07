@@ -45,6 +45,7 @@
                 <a href="{{ object.get_absolute_url }}">
                     <div class="grid-item">
                         <h1 class="recipe-name">{{ object.name }}</h1>
+                        <p class="recipe-total-time"> Total time: {{ object.total_time }} minutes</p>
 
                         <img src="{{ object.pic.url }}" alt="{{ object.description }}" class="recipe-thumbnail" />
                     </div>

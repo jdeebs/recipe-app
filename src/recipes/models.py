@@ -81,3 +81,6 @@ class Recipe(models.Model):
             return json.loads(self.ingredients)
         except json.JSONDecodeError:
             return []
+        
+    def total_time(self):
+        return self.prep_time_minutes + self.cooking_time_minutes
