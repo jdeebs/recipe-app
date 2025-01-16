@@ -48,13 +48,13 @@
         </form>
         <div class="recipe-grid__wrapper">
             <div class="recipe-grid">
-                {% for object in object_list %}
-                <a href="{{ object.get_absolute_url }}">
+                {% for recipe in recipes %}
+                <a href="{{ recipe.get_absolute_url }}">
                     <div class="grid-item">
-                        <h1 class="recipe-name">{{ object.name }}</h1>
-                        <p class="recipe-total-time"> Total time: {{ object.total_time }} minutes</p>
+                        <h1 class="recipe-name">{{ recipe.name }}</h1>
+                        <p class="recipe-total-time"> Total time: {{ recipe.total_time }} minutes</p>
 
-                        <img src="{{ object.pic.url }}" alt="{{ object.description }}" class="recipe-thumbnail" />
+                        <img src="{{ recipe.pic.url }}" alt="{{ recipe.description }}" class="recipe-thumbnail" />
                     </div>
                 </a>
                 {% endfor %}

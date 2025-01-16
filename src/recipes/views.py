@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
 # For search functionality
 from django_filters.views import FilterView
 from .filters import RecipeFilter
@@ -11,7 +11,7 @@ from .models import Recipe
 def home(request):
     return render(request, 'recipes/recipes_home.html')
 
-class RecipeListView(LoginRequiredMixin, ListView, FilterView):
+class RecipeListView(LoginRequiredMixin, FilterView):
     model = Recipe
     template_name = 'recipes/recipe_list.html'
     context_object_name = 'recipes'
