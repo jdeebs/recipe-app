@@ -199,14 +199,20 @@ button { all: unset; }
   border-radius: 5px;
   background-color: rgba(78, 130, 175, 0.5);
 }
+.grid-item__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
 .recipe-name {
   color: black;
 }
-.recipe-total-time {
+.recipe-total-time, .recipe-difficulty {
   color: black;
   font-style: italic;
   opacity: 0.7;
-  padding-bottom: var(--spacing-lg)
 }
 .recipe-thumbnail {
   width: 400px;
