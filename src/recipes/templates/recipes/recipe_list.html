@@ -39,6 +39,13 @@
     {% endcomment %}
 
     <section id="recipe-list">
+        <form method="GET">
+            <div>
+                <label for="search">Search:</label>
+                <input type="text" name="search" id="search" placeholder="{{ search_placeholder }}"
+                    value="{{ request.GET.search }}">
+            </div>
+        </form>
         <div class="recipe-grid__wrapper">
             <div class="recipe-grid">
                 {% for object in object_list %}
