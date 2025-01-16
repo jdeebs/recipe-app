@@ -209,7 +209,7 @@ button { all: unset; }
 .recipe-name {
   color: black;
 }
-.recipe-total-time, .recipe-difficulty {
+.recipe-total-time, .recipe-difficulty, .recipe-includes {
   color: black;
   font-style: italic;
   opacity: 0.7;
