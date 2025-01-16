@@ -57,6 +57,11 @@
                             <h1 class="recipe-name">{{ recipe.name }}</h1>
                             <p class="recipe-total-time"> Total time: {{ recipe.total_time }} minutes</p>
                             <p class="recipe-difficulty"> Difficulty: {{ recipe.difficulty|title }}</p>
+                            {% for ingredient in recipe.parsed_ingredients %}
+                            {% if request.GET.search and ingredient.name|lower == request.GET.search|lower %}
+                            <p class="recipe-includes"> Recipe includes: {{ ingredient.name|capfirst }}</p>
+                            {% endif %}
+                            {% endfor %}
                         </div>
 
                         <img src="{{ recipe.pic.url }}" alt="{{ recipe.description }}" class="recipe-thumbnail" />
