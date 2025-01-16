@@ -53,8 +53,11 @@
                 {% for recipe in recipes %}
                 <a href="{{ recipe.get_absolute_url }}">
                     <div class="grid-item">
-                        <h1 class="recipe-name">{{ recipe.name }}</h1>
-                        <p class="recipe-total-time"> Total time: {{ recipe.total_time }} minutes</p>
+                        <div class="grid-item__content">
+                            <h1 class="recipe-name">{{ recipe.name }}</h1>
+                            <p class="recipe-total-time"> Total time: {{ recipe.total_time }} minutes</p>
+                            <p class="recipe-difficulty"> Difficulty: {{ recipe.difficulty|title }}</p>
+                        </div>
 
                         <img src="{{ recipe.pic.url }}" alt="{{ recipe.description }}" class="recipe-thumbnail" />
                     </div>
