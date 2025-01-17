@@ -45,8 +45,31 @@
                 <input type="text" name="search" id="search" placeholder="{{ search_placeholder }}"
                     value="{{ request.GET.search }}">
                 <button type="submit" id="submit-btn">Enter</button>
+            </div>
+
+            <div>
+                <label for="chart_type">Select Chart Type:</label>
+                <select name="chart_type" id="chart_type">
+                    {% for value, label in form.chart_type.field.choices %}
+                    <option value="{{ value }}" {% if request.GET.chart_type == value %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" id="submit-btn">Generate Chart</button>
                 <button type="button" id="reset-btn">Reset</button>
             </div>
+
+            {% if chart %}
+            <div class="chart-container">
+                <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+            </div>
+            {% else %}
+            <p>No data available to generate the chart.</p>
+            {% endif %}
         </form>
         <div class="recipe-grid__wrapper">
             <div class="recipe-grid">
