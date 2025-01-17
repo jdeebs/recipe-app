@@ -26,3 +26,28 @@ def get_graph():
 
     # Return the image/graph
     return graph
+
+def get_chart(chart_type, data, **kwargs):
+    # Switch plot backend to AGG
+    plt.switch_backend('AGG')
+
+    # Specify figure size
+    fig = plt.figure(figsize=(6,3))
+
+    # Select chart type based on user input
+    if chart_type == '#1':
+        # X-axis ingredients names
+        # Y-axis frequency of ingredient use across all recipes
+    elif chart_type == '#2':
+        # Show what percentage of recipes fall into each difficulty level
+    elif chart_type == '#3':
+        # X-axis Recipe name
+        # Y-axis Total time in minutes
+    else:
+        print('Unknown chart type')
+
+    # Specify layout details
+    plt.tight_layout()
+    # Render graph to file
+    chart = get_graph()
+    return chart
