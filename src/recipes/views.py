@@ -8,7 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Recipe
 # For chart visualization
 import pandas as pd
-import matplotlib.pyplot as plt
+from .utils import get_chart
+from .forms import RecipeChartForm
 
 # Create your views here.
 def home(request):
@@ -24,6 +25,37 @@ class RecipeListView(LoginRequiredMixin, FilterView):
         context = super().get_context_data(**kwargs)
         # Placeholder text for search field
         context['search_placeholder'] = 'Search recipes by title, ingredients, or difficulty'
+
+        form = RecipeChartForm(self.request.GET or None)
+        # Add form to context
+        context['form'] = form
+        chart = None
+
+        # Get filtered queryset
+        filtered_recipes = self.filterset.qs
+        
+        # Convert queryset to a Pandas DataFrame
+        recipe_data = pd.DataFrame([
+            {
+                'name': recipe.name,
+                'ingredients': recipe.ingredients,
+                'difficulty': recipe.difficulty,
+                'total_time': recipe.total_time()
+            }
+            for recipe in filtered_recipes
+        ]
+        )
+
+        # Check if the form is valid
+        if form.is_valid() and not recipe_data.empty:
+            # Retrieve the selected chart type
+            chart_type = form.cleaned_data.get('chart_type')
+
+            # Generate the chart
+            chart = get_chart(chart_type, recipe_data)
+            context['chart'] = chart
+        else:
+            context['chart'] = None
         return context
 
 class RecipeDetailView(LoginRequiredMixin, DetailView):
