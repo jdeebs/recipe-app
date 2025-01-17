@@ -6,6 +6,9 @@ from .filters import RecipeFilter
 # To protect a CBV
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Recipe
+# For chart visualization
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # Create your views here.
 def home(request):
@@ -19,6 +22,7 @@ class RecipeListView(LoginRequiredMixin, FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Placeholder text for search field
         context['search_placeholder'] = 'Search recipes by title, ingredients, or difficulty'
         return context
 
