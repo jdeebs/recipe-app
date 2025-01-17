@@ -58,7 +58,7 @@
                             <p class="recipe-total-time"> Total time: {{ recipe.total_time }} minutes</p>
                             <p class="recipe-difficulty"> Difficulty: {{ recipe.difficulty|title }}</p>
                             {% for ingredient in recipe.parsed_ingredients %}
-                            {% if request.GET.search and ingredient.name|lower == request.GET.search|lower %}
+                            {% if request.GET.search and request.GET.search|lower in ingredient.name|lower %}
                             <p class="recipe-includes"> Recipe includes: {{ ingredient.name|capfirst }}</p>
                             {% endif %}
                             {% endfor %}
