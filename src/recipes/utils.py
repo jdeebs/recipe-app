@@ -2,6 +2,7 @@ from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
 
+# Converts a Matplotlib plot into a base64-encoded PNG image string
 def get_graph():
     # Create a BytesIO buffer for the image
     buffer = BytesIO()
@@ -27,6 +28,7 @@ def get_graph():
     # Return the image/graph
     return graph
 
+# Generates a Matplotlib chart based on specified chart type
 def get_chart(chart_type, data, **kwargs):
     # Switch plot backend to AGG
     plt.switch_backend('AGG')
@@ -36,13 +38,27 @@ def get_chart(chart_type, data, **kwargs):
 
     # Select chart type based on user input
     if chart_type == '#1':
-        # X-axis ingredients names
-        # Y-axis frequency of ingredient use across all recipes
+        # Bar chart: Frequency of ingredient use across all recipes
+        ingredient_counts = data['ingredients'].str.split(', ').explode().value_counts()
+        ingredient_counts.plot(kind='bar')
+        plt.title('Ingredient Frequency')
+        plt.xlabel('Ingredients')
+        plt.ylabel('Times Used In All Recipes')
     elif chart_type == '#2':
-        # Show what percentage of recipes fall into each difficulty level
+        # Pie chart: Percentage of recipes by difficulty level
+        difficulty_counts = data['difficulty'].value_counts()
+        difficulty_counts.plot(kind='pie')
+        plt.title('Recipes by Difficulty')
+        # Remove Y-axis label
+        plt.ylabel('')
     elif chart_type == '#3':
-        # X-axis Recipe name
-        # Y-axis Total time in minutes
+        # Line chart: Total time for each recipe
+        data.sort_values(by='name', inplace=True)
+        plt.plot(data['name'], data['total_time'], marker='o', linestyle='-')
+        plt.title('Recipe Total Time')
+        plt.xlabel('Recipe Name')
+        plt.ylabel('Total Time (minutes)')
+        plt.xticks(rotation=45)
     else:
         print('Unknown chart type')
 
