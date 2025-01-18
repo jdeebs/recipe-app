@@ -39,11 +39,12 @@ def get_chart(chart_type, data, **kwargs):
     # Select chart type based on user input
     if chart_type == '#1':
         # Bar chart: Frequency of ingredient use across all recipes
-        ingredient_counts = data['ingredients'].str.split(', ').explode().value_counts()
+        ingredient_counts = data['ingredients'].explode().value_counts()
         ingredient_counts.plot(kind='bar')
         plt.title('Ingredient Frequency')
         plt.xlabel('Ingredients')
-        plt.ylabel('Times Used In All Recipes')
+        plt.ylabel('Times Used')
+        plt.xticks(rotation=45, horizontalalignment='right')
     elif chart_type == '#2':
         # Pie chart: Percentage of recipes by difficulty level
         difficulty_counts = data['difficulty'].value_counts()
@@ -58,7 +59,7 @@ def get_chart(chart_type, data, **kwargs):
         plt.title('Recipe Total Time')
         plt.xlabel('Recipe Name')
         plt.ylabel('Total Time (minutes)')
-        plt.xticks(rotation=45)
+        plt.xticks(rotation=30, horizontalalignment='right')
     else:
         print('Unknown chart type')
 
