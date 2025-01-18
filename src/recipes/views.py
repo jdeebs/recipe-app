@@ -33,12 +33,20 @@ class RecipeListView(LoginRequiredMixin, FilterView):
 
         # Get filtered queryset
         filtered_recipes = self.filterset.qs
+        print(filtered_recipes)
+
+        # Get ingredient names
+        ingredient_names = []
+        for recipe in filtered_recipes:
+            for ingredient in recipe.parsed_ingredients():
+                ingredient_names.append(ingredient['name'])
+        print(ingredient_names)
         
         # Convert queryset to a Pandas DataFrame
         recipe_data = pd.DataFrame([
             {
                 'name': recipe.name,
-                'ingredients': recipe.ingredients,
+                'ingredients': ingredient_names,
                 'difficulty': recipe.difficulty,
                 'total_time': recipe.total_time()
             }
