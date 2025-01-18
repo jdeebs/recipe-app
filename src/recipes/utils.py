@@ -48,7 +48,7 @@ def get_chart(chart_type, data, **kwargs):
     elif chart_type == '#2':
         # Pie chart: Percentage of recipes by difficulty level
         difficulty_counts = data['difficulty'].value_counts()
-        difficulty_counts.plot(kind='pie')
+        difficulty_counts.plot(kind='pie', autopct='%1.1f%%')
         plt.title('Recipes by Difficulty')
         # Remove Y-axis label
         plt.ylabel('')
