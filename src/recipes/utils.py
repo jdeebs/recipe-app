@@ -39,7 +39,7 @@ def get_chart(chart_type, data, **kwargs):
     # Select chart type based on user input
     if chart_type == '#1':
         # Bar chart: Frequency of ingredient use across all recipes
-        ingredient_counts = data['ingredients'].explode().value_counts()
+        ingredient_counts = data['ingredients'].explode().value_counts(sort=False)
         ingredient_counts.plot(kind='bar')
         plt.title('Ingredient Frequency')
         plt.xlabel('Ingredients')
