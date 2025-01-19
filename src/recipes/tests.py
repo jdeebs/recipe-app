@@ -1,6 +1,10 @@
 import json
 from django.test import TestCase
+from django import forms
 from .models import Recipe
+from .views import RecipeListView
+from .forms import RecipeChartForm
+from .filters import RecipeFilter
 # Import validators
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -141,3 +145,10 @@ class RecipeModelTest(TestCase):
         # Check that get_absolute_url() takes user to detail page of recipe #1
         # and load URL /recipes/1
         self.assertEqual(recipe.get_absolute_url(), '/recipes/1')
+
+class RecipeChartFormTest(TestCase):
+    # def setUpTestData():
+        
+    def test_chart_form_type(self):
+        form = RecipeChartForm()
+        self.assertIsInstance(form, RecipeChartForm, 'RecipeChartForm is not of the expected type.')
