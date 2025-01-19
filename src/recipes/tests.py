@@ -175,5 +175,15 @@ class RecipeListViewTest(TestCase):
         self.url = reverse('recipes:list')
 
     def test_redirect_if_not_authenticated(self):
+        # Test that unauthenticated users are redirected to login
         response = self.client.get(self.url)
         self.assertRedirects(response, f'/login/?next={self.url}')
+
+    def test_access_if_authenticated(self):
+        # Login the user
+        self.client.login(username='testuser', password='testpassword')
+
+        # Test that the authenticated user can access the page
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/recipe_list.html')
