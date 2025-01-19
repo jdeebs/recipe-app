@@ -169,7 +169,11 @@ class RecipeChartFormTest(TestCase):
 class RecipeListViewTest(TestCase):
     def setUp(self):
         # Create user for authentication tests using django's built in user model
-        self.user = get_user_model().objects.create(name='testuser')
+        self.user = get_user_model().objects.create(username='testuser')
         self.user.set_password('testpassword')
         self.user.save()
-        self.url = reverse('recipes/')
+        self.url = reverse('recipes:list')
+
+    def test_redirect_if_not_authenticated(self):
+        response = self.client.get(self.url)
+        self.assertRedirects(response, f'/login/?next={self.url}')
