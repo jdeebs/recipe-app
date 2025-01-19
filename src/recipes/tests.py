@@ -152,3 +152,16 @@ class RecipeChartFormTest(TestCase):
     def test_chart_form_type(self):
         form = RecipeChartForm()
         self.assertIsInstance(form, RecipeChartForm, 'RecipeChartForm is not of the expected type.')
+
+    def test_chart_type_choices(self):
+        form = RecipeChartForm()
+        expected_choices = [
+            ('#1', 'Bar chart'),
+            ('#2', 'Pie chart'),
+            ('#3', 'Line chart')
+        ]
+
+        # Get choices from form field
+        actual_choices = form.fields['chart_type'].choices
+
+        self.assertEqual(actual_choices, expected_choices, 'Chart type choices do not match the expected values.')
