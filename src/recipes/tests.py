@@ -1,10 +1,12 @@
 import json
 from django.test import TestCase
 from django import forms
+from django.urls import reverse
 from .models import Recipe
 from .views import RecipeListView
 from .forms import RecipeChartForm
 from .filters import RecipeFilter
+from django.contrib.auth import get_user_model
 # Import validators
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -146,9 +148,7 @@ class RecipeModelTest(TestCase):
         # and load URL /recipes/1
         self.assertEqual(recipe.get_absolute_url(), '/recipes/1')
 
-class RecipeChartFormTest(TestCase):
-    # def setUpTestData():
-        
+class RecipeChartFormTest(TestCase):        
     def test_chart_form_type(self):
         form = RecipeChartForm()
         self.assertIsInstance(form, RecipeChartForm, 'RecipeChartForm is not of the expected type.')
@@ -165,3 +165,11 @@ class RecipeChartFormTest(TestCase):
         actual_choices = form.fields['chart_type'].choices
 
         self.assertEqual(actual_choices, expected_choices, 'Chart type choices do not match the expected values.')
+
+class RecipeListViewTest(TestCase):
+    def setUp(self):
+        # Create user for authentication tests using django's built in user model
+        self.user = get_user_model().objects.create(name='testuser')
+        self.user.set_password('testpassword')
+        self.user.save()
+        self.url = reverse('recipes/')
