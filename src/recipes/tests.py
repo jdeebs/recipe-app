@@ -173,6 +173,28 @@ class RecipeListViewTest(TestCase):
         self.user.set_password('testpassword')
         self.user.save()
         self.url = reverse('recipes:list')
+        
+    def setUpTestData():
+        ingredients_data = [
+            {"name": "flour", "quantity": 200, "unit": "g"}, 
+            {"name": "milk", "quantity": 300, "unit": "ml"}, 
+            {"name": "egg", "quantity": 2, "unit": "pcs"}, 
+            {"name": "baking powder", "quantity": 1, "unit": "tsp"}, 
+            {"name": "sugar", "quantity": 2, "unit": "tbsp"}
+            ]
+
+        # Encode ingredients as JSON
+        ingredients_json = json.dumps(ingredients_data)
+
+        # Set up one recipe data test object
+        Recipe.objects.create(
+            name='Classic Pancakes',
+            description='Fluffy and light pancakes, perfect for breakfast.',
+            prep_time_minutes=10,
+            cooking_time_minutes=15,
+            difficulty='easy',
+            ingredients=ingredients_json
+        )
 
     def test_redirect_if_not_authenticated(self):
         # Test that unauthenticated users are redirected to login
@@ -187,3 +209,13 @@ class RecipeListViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'recipes/recipe_list.html')
+
+    def test_correct_number_of_recipes_displayed(self):
+        # Login the user
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        # Check that number of recipes returned matches database entries
+        # In this case, 1 from setUpTestData()
+        self.assertEqual(len(response.context['recipes']), 1)
