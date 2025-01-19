@@ -321,7 +321,9 @@ button { all: unset; }
 
 .form-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .search-container {

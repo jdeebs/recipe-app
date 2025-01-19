@@ -50,29 +50,30 @@
                 </div>
 
                 <div class="chart-container">
-                    <p class="chart-description">Display recipe data based on the search criteria. Select a chart below<br>If the search criteria is empty, data for all recipes will be displayed.</p>
+                    <p class="chart-description">Display recipe data based on the search criteria. Select a chart
+                        below<br>If the search criteria is empty, data for all recipes will be displayed.</p>
 
                     <div class="chart-bar">
-                    <select name="chart_type" id="chart_type">
-                        {% for value, label in form.chart_type.field.choices %}
-                        <option value="{{ value }}" {% if request.GET.chart_type == value %}selected{% endif %}>
-                            {{ label }}
-                        </option>
-                        {% endfor %}
-                    </select>
+                        <select name="chart_type" id="chart_type">
+                            {% for value, label in form.chart_type.field.choices %}
+                            <option value="{{ value }}" {% if request.GET.chart_type == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                            {% endfor %}
+                        </select>
                         <button type="submit" id="generate-btn">Generate Chart</button>
                         <button type="button" id="reset-btn">Reset</button>
+                    </div>
                 </div>
-                </div>
-
-                {% if chart %}
+            </form>
+            {% if chart %}
+                <button onclick="toggleChart()" id="toggle-chart-btn">Hide Chart</button>
                 <div class="chart-container">
-                    <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+                    <img src="data:image/png;base64,{{ chart }}" alt="Chart" id="chart-img">
                 </div>
                 {% else %}
                 <p>No data available to generate the chart.</p>
                 {% endif %}
-            </form>
         </div>
 
         <div class="recipe-grid__wrapper">
@@ -113,6 +114,18 @@
                 document.getElementById('submit-btn').click();
             }
         })
+        // Hide/Show chart image
+        function toggleChart() {
+            let chart = document.getElementById('chart-img');
+            let btn = document.getElementById('toggle-chart-btn')
+            if (chart.style.display === 'none') {
+                chart.style.display = "block";
+                btn.innerText = "Hide Chart";
+            } else {
+                chart.style.display = "none";
+                btn.innerText = "Show Chart";
+            }
+        }
     </script>
 </body>
 
