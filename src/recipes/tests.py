@@ -156,9 +156,9 @@ class RecipeChartFormTest(TestCase):
     def test_chart_type_choices(self):
         form = RecipeChartForm()
         expected_choices = [
-            ('#1', 'Bar chart'),
-            ('#2', 'Pie chart'),
-            ('#3', 'Line chart')
+            ('#1', 'Bar chart: Ingredient Frequency'),
+            ('#2', 'Pie chart: Recipes by Difficulty'),
+            ('#3', 'Line chart: Recipes Total Time')
         ]
 
         # Get choices from form field
