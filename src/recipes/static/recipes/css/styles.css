@@ -338,7 +338,7 @@ button { all: unset; }
   padding: 10px;
   border-radius: 14px 0px 0px 14px; /*TL TR BR BL*/
 }
-#search:focus {
+#search:focus, #chart_type:focus {
   outline: 1px solid black;
 }
 .search-bar, .chart-bar {
