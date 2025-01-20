@@ -121,7 +121,7 @@ button { all: unset; }
     var(--spacing-sm);
   transition: all 1s ease-out;
 }
-.relog-btn {
+.relog-btn, #toggle-chart-btn {
   cursor: pointer;
   position: relative;
   font-size: 1em;
@@ -133,9 +133,13 @@ button { all: unset; }
   height: 30px;
   border-radius: 8px;
 }
+#toggle-chart-btn {
+  color: black;
+}
 .btn::after,
 .header::after,
-.relog-btn:after {
+.relog-btn:after,
+#toggle-chart-btn:after {
   position: absolute;
   content: "";
   width: 0%;
@@ -150,7 +154,8 @@ button { all: unset; }
 }
 .btn:hover:after,
 .header:hover:after,
-.relog-btn:hover:after {
+.relog-btn:hover:after,
+#toggle-chart-btn:hover:after {
   width: 100%;
   left: 0;
 }
@@ -370,4 +375,5 @@ button { all: unset; }
 .chart-description {
   width: 600px;
   text-align: center;
+  line-height: 2.5;
 }
