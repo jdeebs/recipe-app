@@ -10,6 +10,8 @@ from .models import Recipe
 import pandas as pd
 from .utils import get_chart
 from .forms import RecipeChartForm
+# For pagination
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
@@ -34,7 +36,15 @@ class RecipeListView(LoginRequiredMixin, FilterView):
 
         # Get filtered queryset
         filtered_recipes = self.filterset.qs
-        print(filtered_recipes)
+        # Paginate filtered recipes
+        paginator = Paginator(filtered_recipes, self.paginate_by)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        # Add the paginated recipes (page_obj) to context
+        context['recipes'] = page_obj
+        context['paginator'] = paginator
+        context['page_obj'] = page_obj
 
         # Get ingredient names
         ingredient_names = []
@@ -47,7 +57,7 @@ class RecipeListView(LoginRequiredMixin, FilterView):
         recipe_data = pd.DataFrame([
             {
                 'name': recipe.name,
-                'ingredients': ingredient_names,
+                'ingredients': [ingredient['name'].capitalize() for ingredient in recipe.parsed_ingredients()],
                 'difficulty': recipe.difficulty,
                 'total_time': recipe.total_time()
             }
@@ -68,13 +78,10 @@ class RecipeListView(LoginRequiredMixin, FilterView):
         return context
     
     def get_queryset(self):
-        queryset = super().get_queryset()
-        print("Full queryset count:", queryset.count())  # Check total recipes in DB
-        if hasattr(self, 'filterset') and self.filterset:
-            filtered_queryset = self.filterset.qs
-            print("Filtered queryset count:", filtered_queryset.count())  # Check after filtering
-            return filtered_queryset
+        queryset = Recipe.objects.all()  # Or apply any filters here
+        print("Queryset length:", len(queryset))
         return queryset
+
 
 class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe

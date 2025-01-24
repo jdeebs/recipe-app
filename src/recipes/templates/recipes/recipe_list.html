@@ -96,21 +96,20 @@
                 </a>
                 {% endfor %}
             </div>
-
+            
             <div class="pagination">
-                {% if recipes.has_previous %}
-                    <a href="?{{ request.GET.urlencode }}&page=1">First</a>
-                    <a href="?{{ request.GET.urlencode }}&page={{ recipes.previous_page_number }}">Previous</a>
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
                 {% endif %}
             
-                <span>Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}</span>
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
             
-                {% if recipes.has_next %}
-                    <a href="?{{ request.GET.urlencode }}&page={{ recipes.next_page_number }}">Next</a>
-                    <a href="?{{ request.GET.urlencode }}&page={{ recipes.paginator.num_pages }}">Last</a>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
                 {% endif %}
-            </div>
-            
+            </div>            
         </div>
     </section>
 
