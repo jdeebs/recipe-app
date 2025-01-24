@@ -20,6 +20,7 @@ class RecipeListView(LoginRequiredMixin, FilterView):
     template_name = 'recipes/recipe_list.html'
     context_object_name = 'recipes'
     filterset_class = RecipeFilter
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -65,6 +66,15 @@ class RecipeListView(LoginRequiredMixin, FilterView):
         else:
             context['chart'] = None
         return context
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        print("Full queryset count:", queryset.count())  # Check total recipes in DB
+        if hasattr(self, 'filterset') and self.filterset:
+            filtered_queryset = self.filterset.qs
+            print("Filtered queryset count:", filtered_queryset.count())  # Check after filtering
+            return filtered_queryset
+        return queryset
 
 class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe

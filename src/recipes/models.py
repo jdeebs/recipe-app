@@ -70,6 +70,10 @@ class Recipe(models.Model):
 
     pic = models.ImageField(upload_to='recipes', default='no_image.svg')
 
+    class Meta:
+        # Order recipes alphabetically by name
+        ordering = ['name']
+
     def __str__(self):
         return str(self.name)
 
