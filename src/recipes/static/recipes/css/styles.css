@@ -378,3 +378,29 @@ button { all: unset; }
   text-align: center;
   line-height: 2.5;
 }
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+}
+.pagination-menu {
+  display: flex;
+  justify-content: center;
+  max-width: fit-content;
+  border: 1px solid black;
+}
+@media only screen and (max-width: 400px) {
+  .pagination-menu {
+    gap: var(--spacing-xxs);
+  }
+}
+.pagination-item {
+  color: black;
+  border-right: 1px solid black;
+  padding: var(--spacing-md);
+}
+.active {
+  color: white;
+  background-color: black;
+}

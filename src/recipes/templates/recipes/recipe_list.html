@@ -50,7 +50,8 @@
                 </div>
 
                 <div class="chart-container">
-                    <p class="chart-description">Display data for the filtered recipes<br>If the search is empty or 'Reset' is selected, data for all recipes will be displayed.</p>
+                    <p class="chart-description">Display data for the filtered recipes<br>If the search is empty or
+                        'Reset' is selected, data for all recipes will be displayed.</p>
 
                     <div class="chart-bar">
                         <select name="chart_type" id="chart_type">
@@ -66,13 +67,13 @@
                 </div>
             </form>
             {% if chart %}
-                <button onclick="toggleChart()" id="toggle-chart-btn">Hide Chart</button>
-                <div class="chart-container">
-                    <img src="data:image/png;base64,{{ chart }}" alt="Chart" id="chart-img">
-                </div>
-                {% else %}
-                <p>No data available to generate the chart.</p>
-                {% endif %}
+            <button onclick="toggleChart()" id="toggle-chart-btn">Hide Chart</button>
+            <div class="chart-container">
+                <img src="data:image/png;base64,{{ chart }}" alt="Chart" id="chart-img">
+            </div>
+            {% else %}
+            <p>No data available to generate the chart.</p>
+            {% endif %}
         </div>
 
         <div class="recipe-grid__wrapper">
@@ -96,20 +97,22 @@
                 </a>
                 {% endfor %}
             </div>
-            
-            <div class="pagination">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">First</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                {% endif %}
-            
-                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-            
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                {% endif %}
-            </div>            
+
+            <div class="pagination-wrapper">
+                <div class="pagination-menu">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1" class="pagination-item">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination-item">{{ page_obj.previous_page_number }}</a>
+                    {% endif %}
+
+                    <span class="pagination-item active">{{ page_obj.number }}</span>
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination-item">{{ page_obj.next_page_number }}</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-item">Last</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </section>
 
