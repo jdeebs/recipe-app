@@ -1,9 +1,9 @@
 import json
-from django.test import TestCase
+from django.test import TestCase, Client
 from django import forms
 from django.urls import reverse
 from .models import Recipe
-from .views import RecipeListView
+from .views import RecipeListView, RecipeDetailView
 from .forms import RecipeChartForm
 from .filters import RecipeFilter
 from django.contrib.auth import get_user_model
@@ -219,3 +219,57 @@ class RecipeListViewTest(TestCase):
         # Check that number of recipes returned matches database entries
         # In this case, 1 from setUpTestData()
         self.assertEqual(len(response.context['recipes']), 1)
+
+class RecipeDetailViewTest(TestCase):
+    def setUp(self):
+        # Create a user
+        self.user = get_user_model().objects.create_user(username='testuser', password='testpassword')
+
+        # Log in the user
+        self.client.login(username="testuser", password="testpassword")
+        
+        ingredients_data = [
+            {"name": "flour", "quantity": 200, "unit": "g"}, 
+            {"name": "milk", "quantity": 300, "unit": "ml"}, 
+            {"name": "egg", "quantity": 2, "unit": "pcs"}, 
+            {"name": "baking powder", "quantity": 1, "unit": "tsp"}, 
+            {"name": "sugar", "quantity": 2, "unit": "tbsp"}
+            ]
+
+        # Encode ingredients as JSON
+        ingredients_json = json.dumps(ingredients_data)
+
+        # Set up one recipe data test object
+        self.recipe = Recipe.objects.create(
+            name='Classic Pancakes',
+            description='Fluffy and light pancakes, perfect for breakfast.',
+            prep_time_minutes=10,
+            cooking_time_minutes=15,
+            difficulty='easy',
+            ingredients=ingredients_json
+        )
+        
+    def test_recipe_detail_view_successful_response(self):
+        # Reverse the URL for detail view
+        url = reverse('recipes:detail', kwargs={'pk': self.recipe.id})
+
+        # Make request to reversed URL
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_recipe_detail_view_correct_template_used(self):
+        url = reverse('recipes:detail', kwargs={'pk': self.recipe.id})
+
+        response = self.client.get(url)
+
+        self.assertTemplateUsed(response, 'recipes/recipe_detail.html')
+
+    def test_recipe_detail_view_context_data(self):
+        url = reverse('recipes:detail', kwargs={'pk': self.recipe.id})
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(response.context['recipe'], self.recipe)
