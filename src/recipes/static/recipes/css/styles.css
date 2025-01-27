@@ -122,7 +122,7 @@ button { all: unset; }
     var(--spacing-sm);
   transition: all 1s ease-out;
 }
-.relog-btn, #toggle-chart-btn {
+.relog-btn, .home-btn, #toggle-chart-btn {
   cursor: pointer;
   position: relative;
   font-size: 1em;
@@ -140,6 +140,7 @@ button { all: unset; }
 .btn::after,
 .header::after,
 .relog-btn:after,
+.home-btn:after,
 #toggle-chart-btn:after {
   position: absolute;
   content: "";
@@ -156,6 +157,7 @@ button { all: unset; }
 .btn:hover:after,
 .header:hover:after,
 .relog-btn:hover:after,
+.home-btn:hover:after,
 #toggle-chart-btn:hover:after {
   width: 100%;
   left: 0;
@@ -278,7 +280,6 @@ button { all: unset; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
   min-width: 200px;
   min-height: 250px;
   position: absolute;
@@ -297,6 +298,10 @@ button { all: unset; }
   display: flex;
   text-align: left;
   padding: 0 var(--spacing-lg) var(--spacing-lg) 0;
+}
+.modal-btns {
+  display: flex;
+  justify-content: space-between;
 }
 
 .login-form {

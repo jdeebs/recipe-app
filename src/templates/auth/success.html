@@ -20,8 +20,12 @@
     <main>
         <div class="modal">
             <h1 class="modal-text">You have successfully<br>logged out</h1>
+            <div class="modal-btns">
+            <a href="{% url 'recipes:home' %}" class="home-btn"><img
+                src="{% static 'recipes/icons/home.svg' %}" width="25"> Home</a>
             <a href="{% url 'login' %}" class="relog-btn">Log Back In <img
                 src="{% static 'recipes/icons/login-box.svg' %}" width="25"></a>
+            </div>
         </div>
     </main>
 </body>
