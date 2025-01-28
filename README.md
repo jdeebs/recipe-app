@@ -76,6 +76,7 @@ Follow these steps to set up the Recipe App locally:
    ```
 
 5. **Create a `.env` File:**
+   
    In the project's root directory (src), create a `.env` file.
    Add the following content to the .env file:
    ```sh
@@ -83,17 +84,17 @@ Follow these steps to set up the Recipe App locally:
    ```
    Replace `'your-secret-key'` with a secure key.
 
-6. **Apply migrations:**
+7. **Apply migrations:**
    ```sh
    python manage.py migrate
    ```
 
-7. **Create a superuser for admin access:**
+8. **Create a superuser for admin access:**
    ```sh
    python manage.py createsuperuser
    ```
 
-8. **Run the development server:**
+9. **Run the development server:**
    ```sh
    python manage.py runserver
    ```
